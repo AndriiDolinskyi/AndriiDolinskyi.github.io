@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "../style/auditorium.css">
+</head>
+<body>
+<header>
+    <h1 class="logo"><a href="main.html">Auditorium</a></h1>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <nav>
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="signin.html">Sign In</a> </li>
+        </ul>
+    </nav>
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+</header>
+
+<div class="info">
+    <h1></h1>
+    <img src = "../images/NOESIS-Auditorium.jpg" width="600" height="350" >
+    <div class="product-text">
+        <h1>  Аудиторія №1</h1>
+        <hr>
+        <p>1 поверх <br> Вміщує до 60 людей <br> Присутній проектор та дві великі дошки</p>
+        <p>Чудова аудиторія для не дуже великих заходів, недавно проведено ремонтні роботи. Крісла складні, із м'якими сидіннями. Дошки за розміром 400х150 см, призначені для написання крейдою... </p>
+        <p> вул. Вулична 25</p>
+        <hr>
+    </div>
+
+    <div class = "reserve">
+        <div>
+            <label for="start">Вибрати дату: </label>
+
+            <input type="date" id="start" name="trip-start"
+                   value="2020-03-25">
+        </div>
+        <div>
+            <label for="time">Кількість годин: </label>
+            <input id = "time" class = "hours" type=number min=1 max=288 value="1" >
+            <button >+</button>
+            <button >-</button>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="product-price-btn">
+        <p>300 грн/год</p>
+        <button type="button">Зарезервувати</button>
+    </div>
+
+</div>
+
+<h1>
+
+</h1>
+
+</body>
+</html>
