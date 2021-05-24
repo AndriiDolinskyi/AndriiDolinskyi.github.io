@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel = "stylesheet" href = "../style/signup.css">
+</head>
+<body>
+<div class="sign-up-form">
+    <h1>Sign up</h1>
+    <form>
+        <label>Username</label>
+        <input type = "text" class="input-box" placeholder="username" id = "name">
+        <label>Email</label>
+        <input type = "email" class="input-box" placeholder="smth@smth.com" id = "email">
+        <label>Password</label>
+        <input type = "password" class="input-box" placeholder="password" id ="password">
+        <p>
+                <span>
+                    <input type="checkbox">
+                </span>
+            Show password
+        </p>
+        <button type = "button" class = "signup-btn" id = "regButton">Sign up</button>
+        <hr>
+        <p>Do you already have an account? <a href="signin.html">Sign in</a> </p>
+    </form>
+</div>
+<script>
+    document.getElementById("regButton").addEventListener("click", grabData);
+    function grabData() {
+        const storedName=document.getElementById("name").value
+        const storedEmail=document.getElementById("email").value
+        const storedPassword=document.getElementById("password").value
+        addUser(storedName,storedEmail,storedPassword)
+        console.log(storedName,storedEmail,storedPassword)
+    }
+    function addUser(storedName,storeEmail,storedPassword) {
+        const Data = {
+            email: storeEmail,
+            name: storedName,
+            password: storedPassword
+        };
+        console.log(Data)
+        const jsonString = JSON.stringify(Data);
+        const request = new XMLHttpRequest();
+        request.open("POST", "http://127.0.0.1:8080/user/register", true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.onload = function () {
+            if (this.status === 200) {
+                const user = JSON.parse(this.responseText);
+                console.log(user);
+            }
+        }
+        request.send(jsonString)
+        window.location.href = 'signin.html'
+    }
+</script>
+</body>
+</html>

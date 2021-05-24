@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "../style/main.css">
+</head>
+    <body>
+<!--        <header class="header">-->
+<!--            <div class = "container">-->
+<!--               <h1 class = 'logo'><a href="main.html">Auditorium</a> </h1>-->
+<!--            </div>-->
+<!--            <nav>-->
+<!--                <ul>-->
+<!--                    <li><a href="about.html">About</a></li>-->
+<!--                    <li><a href="contact.html">Contact</a></li>-->
+
+<!--                </ul>-->
+
+<!--            </nav>-->
+<!--            <div class = "singin">-->
+<!--                <a href="signin.html">Sign in</a>-->
+<!--            </div>-->
+<!--            <img class="person" src="images/silhouette.png">-->
+
+        <header>
+            <h1 class="logo"><a href="main.html">Auditorium</a></h1>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <nav>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="signin.html">Sign In</a> </li>
+                </ul>
+            </nav>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
+        </header>
+
+                </header>
+
+    <div id="cards" class = "cards">
+
+    </div>
+
+    <script>
+        //document.getElementById("button4").addEventListener("click", loadUser);
+        loadAud()
+        function loadAud(){
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1:8080/auditorium', true);
+
+            xhr.onload = function (){
+                if(this.status == 200){
+                    const aud = JSON.parse(this.responseText);
+                    console.log(aud);
+                    let out = '';
+                    for(let i in aud) {
+                        out += ' <div class="wrapper">' +
+                            '<div class="product-img">' +
+                            '<img src="../images/NOESIS-Auditorium.jpg" height="420" width="650">' +
+                            '</div>' +
+                            '<div class="product-info">' +
+                            '<div class="product-text">' +
+                            ' <h1>Аудиторія №' + aud[i].number_of_auditorium + '</h1>' +
+                            '<hr>' +
+                            '<p>' + aud[i].desc + '</p>' +
+                            '<p> ' + aud[i].address + '</p>' +
+                            '</div>' +
+                            '<div class="product-price-btn">' +
+                            '<p>' + aud[i].price + ' грн/год</p>' +
+                            '<button type="button">Зарезервувати</button>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                        document.getElementById('cards').innerHTML = out;
+                    }
+                }
+
+
+            }
+            xhr.send();
+        }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "../style/profile.css">
+</head>
+<body>
+<header>
+    <h1 class="logo"><a href="main.html">Auditorium</a></h1>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <nav>
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="profile.html">Cabinet</a> </li>
+        </ul>
+    </nav>
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+</header>
+
+</header>
+
+    <div id="profile" class="container2">
+        <h1>beardedman34</h1>
+        <h3>Персональний профіль</h3>
+        <a ><img src="../images/man.jpg" width="300" height="300" border="0" /></a>
+        <h4>Мої дані</h4>
+        <p>Нікнейм: beardedman34<br><br> Емейл: coolguy25@gmail.com<br><br>Телефон: 067-33-45-1234</p>
+        <hr>
+        <h3>Зарезервовані аудиторії</h3>
+        <div class="listFlex">
+            <div class="wrapper">
+                <div class="product-img">
+                    <img src="../images/aud4.jpg" height="200" width="260">
+                </div>
+                <div class="product-info">
+                    <div class="product-text">
+                        <h1>Аудиторія №7</h1>
+                    </div>
+                    <div class="product-price-btn">
+                        <button type="button">Переглянути</button>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="product-img">
+                    <img src="../images/aud3.jpg" height="200" width="260">
+                </div>
+                <div class="product-info">
+                    <div class="product-text">
+                        <h1>Аудиторія №5</h1>
+                    </div>
+                    <div class="product-price-btn">
+                        <button type="button">Переглянути</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+</div>
+<script>
+    //document.getElementById("button4").addEventListener("click", loadUser);
+    const name = localStorage.getItem("username")
+    loadUser(name)
+    function loadUser(name){
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://127.0.0.1:8080/user/name/' + name, true);
+
+        xhr.onload = function (){
+            if(this.status == 200){
+                const user = JSON.parse(this.responseText);
+                console.log(user);
+                let out = '';
+                out += '<div>'+
+                    '<h1>user.name</h1>'+
+                '<h3>Персональний профіль</h3>' +
+                '<a ><img src="../images/man.jpg" width="300" height="300" border="0" /></a>'+
+                '<h4>Мої дані</h4>'+
+                '<p>Нікнейм: '+user.name+'<br><br> Емейл: '+user.email+'<br><br>Телефон: 067-33-45-1234</p>'+
+                '<hr>'+
+                    '<h3>Зарезервовані аудиторії</h3>'+
+                    '<div class="listFlex">'+
+                    '</div>'+
+                    '</div>';
+                document.getElementById('profile').innerHTML = out;
+                }
+
+            }
+        xhr.send();
+
+        }
+
+
+
+</script>
+</body>
+</html>

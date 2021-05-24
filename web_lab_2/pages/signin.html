@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel = "stylesheet" href = "../style/signup.css">
+</head>
+<body>
+<div class="sign-up-form">
+    <h1>Sign in</h1>
+    <form>
+        <label>Username</label>
+        <input type = "text" class="input-box" placeholder="username" id = "name">
+        <label>Password</label>
+        <input type = "password" class="input-box" placeholder="password" id = "password">
+        <p>
+                <span>
+                    <input type="checkbox">
+                </span>
+            Show password
+        </p>
+        <button type = "button" class = "signup-btn" id="logButton">Sign in</button>
+        <hr>
+        <p>Don't have an account? <a href="signup.html">Sign up</a> </p>
+    </form>
+</div>
+<script>
+    document.getElementById("logButton").addEventListener("click", grabData);
+    function grabData() {
+        const storedName=document.getElementById("name").value
+        const storedPassword=document.getElementById("password").value
+        console.log(storedName,storedPassword)
+        const namePass=storedName+":"+storedPassword
+        let encodeNamePass="Basic "+ btoa(namePass)
+        console.log(namePass)
+        console.log(encodeNamePass)
+        login(encodeNamePass, storedName)
+    }
+    function login(encodeNamePass, storedName) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://127.0.0.1:8080/login', true);
+        xhr.setRequestHeader('Authorization', encodeNamePass);
+        xhr.onload = function () {
+            if (this.status === 200) {
+                const user = this.responseText;
+                console.log(user);
+                localStorage.setItem("Basic", encodeNamePass)
+                localStorage.setItem("username", storedName)
+                window.location.href = 'mainlog.html'
+            }
+        }
+        xhr.send();
+    }
+</script>
+</body>
+</html>
